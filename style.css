@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Monsterrat;
+}
+@font-face {
+    font-family: Monsterrat;
+    src: url(Monsterrat/Montserrat-Regular.ttf);
+}
+.MainBlock {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fddda552;
+}
+.container {
+    min-width: 800px;
+    margin: 50px;
+    background-color: #bbc8ba;
+    border: 4px solid #2a5530;
+    border-radius: 14px;
+}
+.name {
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    text-transform: uppercase;
+    background-color:#546747;
+    color:#fab73d;
+    font-weight: 600;
+}
+.form {
+    justify-content: center; 
+}
+#textName,
+#textPhone,
+#textEmail,
+#textAddress {
+    font-size: 20px;
+    padding: 7px 10px;
+    display: block;
+    margin: 20px auto;
+    width: 300px;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    color: #546747;
+    background-color: #fddda59d;
+}
+.container input::placeholder {
+    color:#546747;
+}
+.contactsBlock {
+    text-align: center;
+    margin-right: 150px;
+    margin-left: 150px;
+    border: 3px solid #2b331f;
+    border-radius: 5px;
+    background-color: #fddca5;
+    margin-bottom: 30px;
+}
+.remEdButoonBlock {
+
+}
+.removeBut,
+.editBut,
+.saveChangeBut {
+  width: 90px;
+  padding: 5px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  color: #fab73d;
+  background-color: #546747;
+}
+.contact {
+    border: 2px solid #2b331f;
+    margin: 10px;
+    border-radius: 5px;
+}
+.ButtonBlock {
+    display: flex;
+    justify-content: center;
+}
+.saveButton,
+.deleteButton {
+    border: none;
+    outline: none;
+    font-size: 20px;
+    padding: 15px 30px;
+    text-transform: uppercase;
+    background-color:#546747;
+    color:#fddca5;
+    border-radius: 8px;
+    margin: 15px;
+    font-weight: 600;
+}
+.editForm {
+    display: inline;
+}
+.editForm input {
+    margin: 5px auto;
+    display: block;
+    border: none;
+    padding: 3px 9px;
+    border-radius: 5px;
+    background-color: #54674769;
+    color: #2a5530;
+}
+.saveChangeBut {
+   display: block;
+   margin: 7px auto;
+}
