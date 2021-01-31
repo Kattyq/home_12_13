@@ -1,6 +1,6 @@
 class User {
     constructor (name, email, address, phone) {
-        this.data = {name, email, address, phone}
+        this.data = {name, email, address, phone};
     };
     get() {
         return this.data;
@@ -13,10 +13,9 @@ class Contacts {
         this.users = JSON.parse(localStorage.getItem('key')) || [];
     };
     
-    if (localStorage.getItem("key")!= null) { // но почему-то не работает если так написать
-        async getData() {
+    // if (localStorage.getItem("key")!= null) { // но почему-то не работает если так написать
+    async getData() {
         let self = this;
-
         let response = await fetch('https://jsonplaceholder.typicode.com/users');
         let result = await response.json();
         let ppp = JSON.stringify(result);
@@ -25,21 +24,20 @@ class Contacts {
             let yyy = JSON.stringify(element.address);
             element.address = yyy;
         });
-        localStorage.setItem('key', JSON.stringify(self.users));        
-    }
-    }
-    
-
+        localStorage.setItem('key', JSON.stringify(self.users)); 
+        contacts.setCoocie();       
+    }   
     add(name, email, address, phone) {
         let user = new User(name, email, address, phone);
-
         let myUser = user.get();
         this.users.push({id: this.users.length, ...myUser});
         localStorage.getItem('key', JSON.stringify(this.users));
         localStorage.setItem('key', JSON.stringify(this.users));
-
         console.log(user.data.address)
-
+    }
+    setCoocie() {
+        document.cookie = encodeURIComponent('storageExpiration') + '=' + encodeURIComponent(this.users) + '; path=/' + '; max-age = 8,64e+8';
+        console.log(decodeURIComponent(document.cookie));
     }
     edit(id, name, email, address, phone) {
         this.users[id].name = name;
@@ -94,21 +92,27 @@ class ContactsApp extends Contacts {
         inputName.setAttribute('type', 'text');
         inputName.setAttribute('id', 'textName');
         inputName.setAttribute('placeholder', 'Напишите имя контакта');
+        inputName.required = true;
 
         form.appendChild(inputEmail);
         inputEmail.setAttribute('type', 'text');
         inputEmail.setAttribute('id', 'textEmail');
         inputEmail.setAttribute('placeholder', 'Напишите почту контакта');
+        inputEmail.required = true;
 
         form.appendChild(inputAddress);
         inputAddress.setAttribute('type', 'text');
         inputAddress.setAttribute('id', 'textAddress');
         inputAddress.setAttribute('placeholder', 'Напишите адрес контакта');
+        inputAddress.required = true;
+
 
         form.appendChild(inputPhone);
         inputPhone.setAttribute('type', 'text');
         inputPhone.setAttribute('id', 'textPhone');
         inputPhone.setAttribute('placeholder', 'Напишите номер контакта');
+        inputPhone.required = true;
+
 
         form.appendChild(ButtonBlock);
         ButtonBlock.classList.add('ButtonBlock');
@@ -129,9 +133,9 @@ class ContactsApp extends Contacts {
             let email = event.currentTarget[1].value
             let address = event.currentTarget[2].value
             let phone = event.currentTarget[3].value
-			event.currentTarget[0].value = event.currentTarget[1].value = event.currentTarget[2].value = event.currentTarget[3].value = '' // здесь плейсхолдер чистим
+            event.currentTarget[0].value = event.currentTarget[1].value = event.currentTarget[2].value = event.currentTarget[3].value = '' // здесь плейсхолдер чистим
             self.add(name, email, address, phone);
-            this.displayContacts();
+            this.displayContacts();            
         })
     }
     editModalWindow(contactId, userData) {
@@ -234,6 +238,11 @@ class ContactsApp extends Contacts {
             document.querySelector('.container').appendChild(contactsBlock);
             contactsBlock.appendChild(contact);
         })
+
+
+       
+
+
         setTimeout(() => {
             localStorage.clear();
         }, 8.64e+8)
